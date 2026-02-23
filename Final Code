@@ -1,1 +1,123 @@
+using System;
+
+public class Program
+{
+    static Random rand = new Random();
+
+    public static void Main()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("----- Welcome to Immanuel's Game Console -----");
+            Console.WriteLine("----- We hope you enjoy your stay inside the console or forever hold your peace -----");
+            Console.WriteLine("1. Naughts and Crosses (PVP)");
+            Console.WriteLine("2. Rock Paper Scissors (PVC)");
+            Console.WriteLine("3. Exit");
+            Console.Write("Select an option: ");
+
+            string choice = Console.ReadLine();
+
+            switch (choice)
+            {
+                case "1":
+                    PlayNC();
+                    break;
+
+                case "2":
+                    PlayRPS();
+                    break;
+
+                case "3":
+                    Console.WriteLine("Exiting program...");
+                    return;
+
+                default:
+                    Console.WriteLine("Invalid selection. Press ENTER to try again.");
+                    Console.ReadLine();
+                    break;
+            }
+        }
+    }
+
+    // ------------------ RPS GAME ------------------
+
+    static void PlayRPS()
+    {
+        while (true)
+        {
+            Console.Clear();
+            Console.WriteLine("Rock Paper Scissors");
+            Console.WriteLine("Press 1 for Rock, 2 for Paper, 3 for Scissors");
+            Console.WriteLine("Press 0 to return to menu");
+
+            int userInput;
+            bool valid = int.TryParse(Console.ReadLine(), out userInput);
+
+            if (!valid || userInput < 0 || userInput > 3)
+            {
+                Console.WriteLine("Invalid input. Press ENTER to try again.");
+                Console.ReadLine();
+                continue;
+            }
+
+            if (userInput == 0)
+                return;
+
+            Console.WriteLine($"The player chose {userInput}");
+
+            int computerInput = randomNumberGenerator();
+            Console.WriteLine($"The computer chose {computerInput}");
+
+            if (computerInput == userInput)
+            {
+                Console.WriteLine("It's a draw!");
+            }
+            else if (computerInput == 1 && userInput == 2)
+            {
+                Console.WriteLine("Player wins!");
+            }
+            else if (computerInput == 2 && userInput == 1)
+            {
+                Console.WriteLine("Player loses!");
+            }
+            else if (computerInput == 3 && userInput == 1)
+            {
+                Console.WriteLine("Player loses!");
+            }
+            else if (computerInput == 1 && userInput == 3)
+            {
+                Console.WriteLine("Player wins!");
+            }
+            else if (computerInput == 2 && userInput == 3)
+            {
+                Console.WriteLine("Player loses!");
+            }
+            else if (computerInput == 3 && userInput == 2)
+            {
+                Console.WriteLine("Player wins!");
+            }
+
+            Console.WriteLine("\nPress ENTER to play again...");
+            Console.ReadLine();
+        }
+    }
+
+    static int randomNumberGenerator()
+    {
+        return rand.Next(1, 4);
+    }
+
+    static void PlayNC()
+    {
+        Console.Clear();
+        Console.WriteLine("Naughts and Crosses not built yet.");
+        Console.WriteLine("Press ENTER to return to menu.");
+        Console.ReadLine();
+		
+		
+		// ------------------ TTC GAME ------------------
+		
+    }
+}
 
