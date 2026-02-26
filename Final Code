@@ -4,6 +4,17 @@ public class Program
 {
     static Random rand = new Random();
 
+    static string[] bibleVerses =
+    {
+        "Philippians 4:13 - I can do all things through Christ who strengthens me 🤲.",
+        "Psalm 23:1 - The Lord is my shepherd; I shall not want🐏.",
+        "Jeremiah 29:11 - For I know the plans I have for you, declares the Lord 📖.",
+        "Proverbs 3:5 - Trust in the Lord with all your heart❤️.",
+        "Romans 8:28 - All things work together for good for those who love God🫂.",
+        "Isaiah 41:10 - Do not fear, for I am with you👨‍👩‍👧‍👦.",
+        "Matthew 11:28 - Come to me, all who are weary, and I will give you rest💤."
+    };
+
     public static void Main()
     {
         while (true)
@@ -14,9 +25,10 @@ public class Program
             Console.WriteLine("1. Naughts and Crosses (PVP)");
             Console.WriteLine("2. Rock Paper Scissors (PVC)");
             Console.WriteLine("3. Exit");
+            Console.WriteLine("4. Bible Verse");
             Console.Write("Select an option: ");
 
-            string choice = Console.ReadLine();
+            string choice = Console.ReadLine().Trim();
 
             switch (choice)
             {
@@ -31,6 +43,10 @@ public class Program
                 case "3":
                     Console.WriteLine("Exiting program...");
                     return;
+
+                case "4":
+                    ShowBibleVerse();
+                    break;
 
                 default:
                     Console.WriteLine("Invalid selection. Press ENTER to try again.");
@@ -64,38 +80,24 @@ public class Program
             if (userInput == 0)
                 return;
 
-            Console.WriteLine($"The player chose {userInput}");
+            Console.WriteLine("The player chose {ConvertChoice(userInput)}");
 
             int computerInput = randomNumberGenerator();
-            Console.WriteLine($"The computer chose {computerInput}");
+            Console.WriteLine("The computer chose {ConvertChoice(computerInput)}");
 
             if (computerInput == userInput)
             {
                 Console.WriteLine("It's a draw!");
             }
-            else if (computerInput == 1 && userInput == 2)
+            else if (computerInput == 1 && userInput == 2 ||
+                     computerInput == 2 && userInput == 3 ||
+                     computerInput == 3 && userInput == 1)
             {
                 Console.WriteLine("Player wins!");
             }
-            else if (computerInput == 2 && userInput == 1)
+            else
             {
                 Console.WriteLine("Player loses!");
-            }
-            else if (computerInput == 3 && userInput == 1)
-            {
-                Console.WriteLine("Player loses!");
-            }
-            else if (computerInput == 1 && userInput == 3)
-            {
-                Console.WriteLine("Player wins!");
-            }
-            else if (computerInput == 2 && userInput == 3)
-            {
-                Console.WriteLine("Player loses!");
-            }
-            else if (computerInput == 3 && userInput == 2)
-            {
-                Console.WriteLine("Player wins!");
             }
 
             Console.WriteLine("\nPress ENTER to play again...");
@@ -108,16 +110,33 @@ public class Program
         return rand.Next(1, 4);
     }
 
+    static string ConvertChoice(int choice)
+    {
+        if (choice == 1) return "Rock";
+        if (choice == 2) return "Paper";
+        if (choice == 3) return "Scissors";
+        return "Unknown";
+    }
+
+    // ------------------ NC CODE ------------------
+
     static void PlayNC()
     {
         Console.Clear();
         Console.WriteLine("Naughts and Crosses not built yet.");
         Console.WriteLine("Press ENTER to return to menu.");
         Console.ReadLine();
-		
-		
-		// ------------------ TTC GAME ------------------ // 
-		
+    }
+
+    // ------------------ BIBLE VERSE SYSTEM ------------------
+
+    static void ShowBibleVerse()
+    {
+        Console.Clear();
+        int index = rand.Next(0, bibleVerses.Length);
+        Console.WriteLine("📖 Bible Verse of the Moment:\n");
+        Console.WriteLine(bibleVerses[index]);
+        Console.WriteLine("\nPress ENTER to return to menu.");
+        Console.ReadLine();
     }
 }
-
